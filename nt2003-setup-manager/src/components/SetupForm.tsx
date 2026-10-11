@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
+import { animate, createScope, stagger } from 'animejs'
 import type { FormEvent } from 'react'
 import type { NewSetup, SetupMode, Gearing, GearValues } from '../types/setup'
 import { tracks } from '../data/tracks'
@@ -112,6 +113,20 @@ export default function SetupForm({ initialValues, onSubmit, onCancel }: SetupFo
             : emptyGears,
     )
 
+    const root = useRef<HTMLFormElement>(null)
+    useLayoutEffect(() => {
+        const scope = createScope({ root }).add(() => {
+            animate(Array.from(root.current!.children), {
+                opacity: [0, 1],
+                translateY: [24, 0],
+                duration: 450,
+                delay: stagger(50),
+                ease: 'outQuad',
+            })
+        })
+        return () => scope.revert()
+    }, [])
+
     function setField(key: keyof FieldValues, value: string) {
         setValues((prev) => ({ ...prev, [key]: value}))
     }
@@ -157,7 +172,7 @@ export default function SetupForm({ initialValues, onSubmit, onCancel }: SetupFo
         })
     }
     return (
-        <form onSubmit={handleSubmit} className="flex w-full max-w-md flex-col gap-4">
+        <form ref={root} onSubmit={handleSubmit} className="flex w-full max-w-md flex-col gap-4">
             <label className="flex flex-col gap-1 font-semibold">
                 Setup Name 
                 <input
