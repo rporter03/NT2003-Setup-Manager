@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+@theme {
+    --color-page: #9ca0a6;
+    --color-button: #d1d3d8;
+    --color-button-hover: #7b1e2b;
+    --color-text: #000000;
+    --color-text-hover: #ffffff;
+    --color-button-edge: #a9acb2;
+    --color-bevel-light: #ffffff;
+    --color-bevel-dark: #000000;
+}
+
+@layer base {
+    body {
+        background-color: var(--color-page);
+        color: var(--color-text);
+    }
+}
