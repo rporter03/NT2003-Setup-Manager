@@ -42,3 +42,5 @@ export type Track = {
     id: string
     name: string
 }
+
+export type NewSetup = Omit<Setup, 'id' | 'createdAt' | 'updatedAt'>
