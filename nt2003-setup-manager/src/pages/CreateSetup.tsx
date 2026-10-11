@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router'
-import Button from '../components/Button'
+import SetupForm from '../components/SetupForm'
+import { useSetups } from '../hooks/useSetups'
 
 export default function CreateSetup() {
     const navigate = useNavigate()
+    const { addSetup } = useSetups()
 
     return (
         <div className="min-h-screen">
@@ -10,7 +12,13 @@ export default function CreateSetup() {
                 <h1 className="text-4xl font-bold">Create Setup</h1>
             </header>
             <main className="mt-12 flex flex-col items-center gap-2">
-                <Button onClick={() => navigate('/')}>Back</Button>
+                <SetupForm
+                    onSubmit={(data) => {
+                        addSetup(data)
+                        navigate('/setups')
+                    }}
+                    onCancel={() => navigate('/')}
+                />
             </main>
         </div>
     )

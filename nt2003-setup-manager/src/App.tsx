@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router'
 import Home from './pages/Home'
 import CreateSetup from './pages/CreateSetup'
