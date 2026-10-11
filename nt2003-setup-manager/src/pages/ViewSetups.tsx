@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router'
-import { useState } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
+import { animate, createScope, stagger } from 'animejs'
 import Button from '../components/Button'
 import SetupCard from '../components/SetupCard'
 import ConfirmDialog from '../components/ConfirmDialog'
@@ -13,6 +14,19 @@ export default function ViewSetups() {
     const { setups, deleteSetup } = useSetups()
     const [search, setSearch] = useState('')
     const [setupToDelete, setSetupToDelete] = useState<Setup | null>(null)
+    const root = useRef<HTMLDivElement>(null)
+    useLayoutEffect(() => {
+        const scope = createScope({ root }).add(() => {
+            animate('.setup-card', {
+                opacity: [0, 1],
+                translateY: [24, 0],
+                duration: 450,
+                delay: stagger(80),
+                ease: 'outQuad',
+            })
+        })
+        return () => scope.revert()
+    }, [])
     const query = search.trim().toLowerCase()
     const visible = setups
         .filter(
@@ -23,7 +37,7 @@ export default function ViewSetups() {
         .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
 
     return (
-        <div className="min-h-screen">
+        <div ref={root} className="min-h-screen">
             <header className="pt-12 text-center">
                 <h1 className="text-4xl font-bold">View Setups</h1>
             </header>

@@ -9,6 +9,7 @@
     --color-button-edge: #a9acb2;
     --color-bevel-light: #ffffff;
     --color-bevel-dark: #000000;
+    --font-sans: "Chakra Petch", sans-serif;
 }
 
 @layer base {

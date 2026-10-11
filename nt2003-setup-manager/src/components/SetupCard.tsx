@@ -14,7 +14,7 @@ export default function SetupCard({ setup, onEdit, onDelete }: SetupCardProps) {
     const modeLabel = modes.find((m) => m.value === setup.mode)?.label ?? setup.mode
     const { downforce, suspension, gearing } = setup
     return (
-        <article className="w-full border-2 border-t-bevel-light border-l-bevel-light border-b-bevel-dark border-r-bevel-dark bg-button p-4">
+        <article className="setup-card w-full border-2 border-t-bevel-light border-l-bevel-light border-b-bevel-dark border-r-bevel-dark bg-button p-4">
             <h2 className="text-2xl font-bold">{setup.name}</h2>
             <p className="font-semibold">
                 {getTrackName(setup.trackID)} - {modeLabel}
@@ -51,7 +51,7 @@ export default function SetupCard({ setup, onEdit, onDelete }: SetupCardProps) {
                     )}
                 </section>
             </div>
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
                 <Button onClick={onEdit}>Edit</Button>
                 <Button onClick={onDelete}>Delete</Button>
             </div>
