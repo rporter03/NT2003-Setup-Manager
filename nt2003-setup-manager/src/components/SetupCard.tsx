@@ -27,6 +27,13 @@ export default function SetupCard({ setup }: SetupCardProps) {
                     <p>Rear Spoiler: {downforce.rearSpoiler}°</p>
                 </section>
                 <section>
+                    <h3 className="font-bold">Suspension</h3>
+                    <p>Front Springs: {suspension.frontSprings}%</p>
+                    <p>Rear Springs: {suspension.rearSprings}%</p>
+                    <p>Sway Bar: {formatFraction(suspension.swayBar)}"</p>
+                    <p>Wedge: {suspension.wedge} turns</p>
+                </section>
+                <section>
                     <h3 className="font-bold">Gear Ratios</h3>
                     {gearing.type === 'preset' ? (
                         <p>Preset {gearing.presetNumber}</p>
