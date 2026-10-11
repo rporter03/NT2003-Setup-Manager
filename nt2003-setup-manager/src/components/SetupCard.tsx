@@ -2,12 +2,15 @@ import type { Setup } from '../types/setup'
 import { modes } from '../data/setupLimits'
 import { formatFraction } from '../lib/options'
 import { getTrackName } from '../lib/tracks'
+import Button from './Button'
 
 type SetupCardProps = {
     setup: Setup
+    onEdit: () => void
+    onDelete: () => void
 }
 
-export default function SetupCard({ setup }: SetupCardProps) {
+export default function SetupCard({ setup, onEdit, onDelete }: SetupCardProps) {
     const modeLabel = modes.find((m) => m.value === setup.mode)?.label ?? setup.mode
     const { downforce, suspension, gearing } = setup
     return (
@@ -47,6 +50,10 @@ export default function SetupCard({ setup }: SetupCardProps) {
                         </>
                     )}
                 </section>
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2">
+                <Button onClick={onEdit}>Edit</Button>
+                <Button onClick={onDelete}>Delete</Button>
             </div>
         </article>
     )

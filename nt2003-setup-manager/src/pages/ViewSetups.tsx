@@ -2,14 +2,17 @@ import { useNavigate } from 'react-router'
 import { useState } from 'react'
 import Button from '../components/Button'
 import SetupCard from '../components/SetupCard'
+import ConfirmDialog from '../components/ConfirmDialog'
 import { inputClass } from '../components/fieldStyles'
 import { useSetups } from '../hooks/useSetups'
 import { getTrackName } from '../lib/tracks'
+import type { Setup } from '../types/setup'
 
 export default function ViewSetups() {
     const navigate = useNavigate()
-    const { setups } = useSetups()
+    const { setups, deleteSetup } = useSetups()
     const [search, setSearch] = useState('')
+    const [setupToDelete, setSetupToDelete] = useState<Setup | null>(null)
     const query = search.trim().toLowerCase()
     const visible = setups
         .filter(
@@ -40,13 +43,29 @@ export default function ViewSetups() {
                     <p className="text-center">No setups match "{search}".</p>
                 )}
                 {visible.map((s) => (
-                    <SetupCard key={s.id} setup={s} />
+                    <SetupCard 
+                    key={s.id} 
+                    setup={s} 
+                    onEdit={() => navigate(`/setups/${s.id}/edit`)}
+                    onDelete={() => setSetupToDelete(s)}
+                    />
                 ))}
                 <div className="mt-4 flex flex-col items-center gap-2">
                     <Button onClick={() => navigate('/create')}>Create Setup</Button>
                     <Button onClick={() => navigate('/')}>Back</Button>
                 </div>
             </main>
+            {setupToDelete && (
+                <ConfirmDialog
+                    message={`Delete "${setupToDelete.name}"? This can't be undone.`}
+                    confirmLabel="Delete"
+                    onConfirm={() => {
+                        deleteSetup(setupToDelete.id)
+                        setSetupToDelete(null)
+                    }}
+                    onCancel={() => setSetupToDelete(null)}
+                />
+            )}
         </div>
     )
 }
