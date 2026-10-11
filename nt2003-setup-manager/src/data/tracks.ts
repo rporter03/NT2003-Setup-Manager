@@ -1,0 +1,28 @@
+import type { Track } from '../types/setup'
+
+export const tracks: Track[] = [
+    { id: 'atlanta', name: 'Atlanta' },
+    { id: 'bristol', name: 'Bristol' },
+    { id: 'california', name: 'California' },
+    { id: 'chicagoland', name: 'Chicagoland' },
+    { id: 'darlington', name: 'Darlington' },
+    { id: 'daytona', name: 'Daytona' },
+    { id: 'dover', name: 'Dover' },
+    { id: 'homestead-miami', name: 'Homestead-Miami' },
+    { id: 'indianapolis', name: 'Indianapolis' },
+    { id: 'infineon', name: 'Infineon' },
+    { id: 'kansas-speedway', name: 'Kansas Speedway' },
+    { id: 'las-vegas', name: 'Las Vegas' },
+    { id: 'lowes', name: "Lowe's" },
+    { id: 'martinsville', name: 'Martinsville' },
+    { id: 'michigan', name: 'Michigan' },
+    { id: 'new-hampshire', name: 'New Hampshire' },
+    { id: 'north-carolina', name: 'North Carolina' },
+    { id: 'phoenix', name: 'Phoenix' },
+    { id: 'pocono', name: 'Pocono' },
+    { id: 'richmond', name: 'Richmond' },
+    { id: 'talladega', name: 'Talladega' },
+    { id: 'texas', name: 'Texas' },
+    { id: 'tiburon', name: 'Tiburon' },
+    { id: 'watkins-glen', name: 'Watkins Glen' },
+]
